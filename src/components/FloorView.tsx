@@ -6,6 +6,7 @@ import { ChevronLeft } from 'lucide-react';
 import { Room, RoomStatus, ModifiedBy } from '@/types/room';
 import RoomCard from '@/components/RoomCard';
 import StatusModal from '@/components/StatusModal';
+import { supabase } from '@/lib/supabase';
 
 const STORAGE_KEY = 'hotel-rooms-state';
 
@@ -33,7 +34,37 @@ export default function FloorView({ floorNumber }: FloorViewProps) {
   const [selectedStatus, setSelectedStatus] = useState<RoomStatus>('ocupada');
 
   useEffect(() => {
-    const initializeRooms = () => {
+    const initializeRooms = async () => {
+      try {
+        // Intentar cargar desde Supabase
+        const { data, error } = await supabase
+          .from('rooms')
+          .select('*')
+          .eq('floor', floorNumber);
+
+        if (error) throw error;
+
+        if (data) {
+          // Convertir datos de Supabase al formato Room
+          const supabaseRooms: Room[] = data.map((row: any) => ({
+            id: `room-${row.floor}-${row.room_number}`,
+            number: row.room_number,
+            floor: row.floor,
+            status: row.status as RoomStatus,
+            guestName: row.guest_name || undefined,
+            guestPhone: row.guest_phone || undefined,
+            modifiedBy: row.modified_by as ModifiedBy | undefined,
+          }));
+
+          setRooms(supabaseRooms);
+          setMounted(true);
+          return;
+        }
+      } catch (error) {
+        console.log('Supabase not available, using localStorage:', error);
+      }
+
+      // Fallback a localStorage si Supabase no está disponible
       const savedState = localStorage.getItem(STORAGE_KEY);
       const defaultRooms = createDefaultRooms();
 
@@ -60,22 +91,49 @@ export default function FloorView({ floorNumber }: FloorViewProps) {
       } else {
         setRooms(defaultRooms);
       }
+
+      setMounted(true);
     };
 
-    setMounted(true);
     initializeRooms();
   }, [floorNumber]);
 
   useEffect(() => {
     if (mounted && rooms.length > 0) {
-      const allRooms = localStorage.getItem(STORAGE_KEY);
-      const existingRooms = allRooms ? JSON.parse(allRooms).map((r: any) => ({
-        ...r,
-        status: normalizeStatus(r.status),
-      })) : [];
-      const otherRooms = existingRooms.filter((r: Room) => r.floor !== floorNumber);
-      const allUpdatedRooms = [...otherRooms, ...rooms];
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(allUpdatedRooms));
+      // Guardar en Supabase
+      const saveToSupabase = async () => {
+        try {
+          for (const room of rooms) {
+            const { error } = await supabase
+              .from('rooms')
+              .upsert({
+                room_number: room.number,
+                floor: room.floor,
+                status: room.status,
+                guest_name: room.guestName || null,
+                guest_phone: room.guestPhone || null,
+                modified_by: room.modifiedBy || null,
+              }, {
+                onConflict: 'floor,room_number'
+              });
+
+            if (error) console.error('Error saving room to Supabase:', error);
+          }
+        } catch (error) {
+          console.log('Supabase save failed, using localStorage:', error);
+          // Fallback a localStorage
+          const allRooms = localStorage.getItem(STORAGE_KEY);
+          const existingRooms = allRooms ? JSON.parse(allRooms).map((r: any) => ({
+            ...r,
+            status: normalizeStatus(r.status),
+          })) : [];
+          const otherRooms = existingRooms.filter((r: Room) => r.floor !== floorNumber);
+          const allUpdatedRooms = [...otherRooms, ...rooms];
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(allUpdatedRooms));
+        }
+      };
+
+      saveToSupabase();
     }
   }, [rooms, mounted, floorNumber]);
 
