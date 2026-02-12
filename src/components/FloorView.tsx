@@ -40,7 +40,8 @@ export default function FloorView({ floorNumber }: FloorViewProps) {
         const { data, error } = await supabase
           .from('rooms')
           .select('*')
-          .eq('floor', floorNumber);
+          .eq('floor', floorNumber)
+          .order('room_number', { ascending: true });
 
         if (error) throw error;
 
@@ -56,6 +57,8 @@ export default function FloorView({ floorNumber }: FloorViewProps) {
             modifiedBy: row.modified_by as ModifiedBy | undefined,
           }));
 
+          // Asegurar que estén ordenadas
+          supabaseRooms.sort((a, b) => a.number - b.number);
           setRooms(supabaseRooms);
           setMounted(true);
           return;
@@ -75,7 +78,7 @@ export default function FloorView({ floorNumber }: FloorViewProps) {
             ...r,
             status: normalizeStatus(r.status),
           }));
-          const floorRooms = normalizedRooms.filter((r: Room) => r.floor === floorNumber);
+          let floorRooms = normalizedRooms.filter((r: Room) => r.floor === floorNumber);
           
           // Ensure we have all 10 rooms for this floor
           if (floorRooms.length < 10) {
@@ -84,6 +87,8 @@ export default function FloorView({ floorNumber }: FloorViewProps) {
             floorRooms.push(...missingRooms);
           }
           
+          // Ordenar por número de habitación
+          floorRooms.sort((a, b) => a.number - b.number);
           setRooms(floorRooms);
         } catch {
           setRooms(defaultRooms);
