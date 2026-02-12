@@ -88,7 +88,7 @@ export default function FloorView({ floorNumber }: FloorViewProps) {
           }
           
           // Ordenar por número de habitación
-          floorRooms.sort((a, b) => a.number - b.number);
+          floorRooms.sort((a: Room, b: Room) => a.number - b.number);
           setRooms(floorRooms);
         } catch {
           setRooms(defaultRooms);

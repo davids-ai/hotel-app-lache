@@ -25,12 +25,22 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Estilos para iOS - Forzar color de texto negro en inputs */
+/* Estilos agresivos para iOS - Forzar color de texto negro en inputs */
 input[type="text"],
-input[type="tel"],
-select {
+input[type="tel"] {
   -webkit-text-fill-color: #111827 !important;
-  -webkit-text-security: none;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  color: #111827 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  background-color: white !important;
+}
+
+input[type="text"]::-webkit-input-placeholder,
+input[type="tel"]::-webkit-input-placeholder {
+  -webkit-text-fill-color: #111827 !important;
   color: #111827 !important;
 }
 
@@ -41,25 +51,55 @@ input[type="tel"]::placeholder {
   opacity: 1 !important;
 }
 
-/* Autofill styles para iOS */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px white inset !important;
+/* Autofill y focus para iOS */
+input[type="text"]:-webkit-autofill,
+input[type="tel"]:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.95) inset !important;
   -webkit-text-fill-color: #111827 !important;
 }
 
+input[type="text"]:-webkit-autofill:focus,
+input[type="tel"]:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.95) inset !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus {
+  -webkit-text-fill-color: #111827 !important;
+  color: #111827 !important;
+  caret-color: #111827 !important;
+}
+
+/* Select styling para iOS */
 select {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  -webkit-text-fill-color: #111827 !important;
+  color: #111827 !important;
+  background-color: white !important;
+  background-image: none !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
   color-scheme: light;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  -webkit-text-fill-color: #111827;
+}
+
+select:focus {
+  -webkit-text-fill-color: #111827 !important;
+  color: #111827 !important;
 }
 
 select option {
-  background-color: white;
-  color: #111827;
-  -webkit-text-fill-color: #111827;
+  background-color: white !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  font-weight: 600;
+}
+
+select option:checked {
+  background: linear-gradient(#0ea5e9, #0ea5e9) !important;
+  background-color: #0ea5e9 !important;
+  color: white !important;
+  -webkit-text-fill-color: white !important;
 }

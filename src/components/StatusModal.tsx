@@ -126,8 +126,12 @@ export default function StatusModal({
                 WebkitTextFillColor: '#111827',
                 WebkitAutofillTextFillColor: '#111827',
                 color: '#111827',
+                fontSize: '16px',
+                fontWeight: '600',
+                WebkitAppearance: 'none',
+                appearance: 'none',
               } as React.CSSProperties}
-              className={`w-full rounded-lg border-2 px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold placeholder-gray-900 transition-colors focus:outline-none caret-gray-900 ${
+              className={`w-full rounded-lg border-2 px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold placeholder-gray-900 placeholder:text-gray-900 transition-colors focus:outline-none caret-gray-900 ${
                 errors.name
                   ? 'border-red-500 bg-red-50 focus:border-red-600'
                   : 'border-gray-300 bg-white focus:border-blue-500'
@@ -153,8 +157,12 @@ export default function StatusModal({
                 WebkitTextFillColor: '#111827',
                 WebkitAutofillTextFillColor: '#111827',
                 color: '#111827',
+                fontSize: '16px',
+                fontWeight: '600',
+                WebkitAppearance: 'none',
+                appearance: 'none',
               } as React.CSSProperties}
-              className={`w-full rounded-lg border-2 px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold placeholder-gray-900 transition-colors focus:outline-none caret-gray-900 ${
+              className={`w-full rounded-lg border-2 px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold placeholder-gray-900 placeholder:text-gray-900 transition-colors focus:outline-none caret-gray-900 ${
                 errors.phone
                   ? 'border-red-500 bg-red-50 focus:border-red-600'
                   : 'border-gray-300 bg-white focus:border-blue-500'
