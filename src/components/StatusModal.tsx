@@ -118,7 +118,11 @@ export default function StatusModal({
                 if (errors.name) setErrors({ ...errors, name: undefined });
               }}
               placeholder="Ingresa el nombre completo"
-              className={`w-full rounded-lg border-2 px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold placeholder-gray-500 transition-colors focus:outline-none ${
+              style={{
+                WebkitTextFillColor: name ? '#111827' : undefined,
+                WebkitAutofillTextFillColor: '#111827',
+              }}
+              className={`w-full rounded-lg border-2 px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold placeholder-gray-500 transition-colors focus:outline-none caret-gray-900 ${
                 errors.name
                   ? 'border-red-500 bg-red-50 focus:border-red-600'
                   : 'border-gray-300 bg-white focus:border-blue-500'
@@ -140,7 +144,11 @@ export default function StatusModal({
                 if (errors.phone) setErrors({ ...errors, phone: undefined });
               }}
               placeholder="Ingresa el teléfono"
-              className={`w-full rounded-lg border-2 px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold placeholder-gray-500 transition-colors focus:outline-none ${
+              style={{
+                WebkitTextFillColor: phone ? '#111827' : undefined,
+                WebkitAutofillTextFillColor: '#111827',
+              }}
+              className={`w-full rounded-lg border-2 px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold placeholder-gray-500 transition-colors focus:outline-none caret-gray-900 ${
                 errors.phone
                   ? 'border-red-500 bg-red-50 focus:border-red-600'
                   : 'border-gray-300 bg-white focus:border-blue-500'
