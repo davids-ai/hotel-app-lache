@@ -48,8 +48,8 @@ export default function FloorView({ floorNumber }: FloorViewProps) {
           
           // Ensure we have all 10 rooms for this floor
           if (floorRooms.length < 10) {
-            const existingNumbers = floorRooms.map(r => r.number);
-            const missingRooms = defaultRooms.filter(r => !existingNumbers.includes(r.number));
+            const existingNumbers = floorRooms.map((r: Room) => r.number);
+            const missingRooms = defaultRooms.filter((r: Room) => !existingNumbers.includes(r.number));
             floorRooms.push(...missingRooms);
           }
           
