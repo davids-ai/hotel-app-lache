@@ -98,10 +98,10 @@ export default function StatusModal({
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value as RoomStatus)}
-              className="w-full rounded-lg border-2 border-gray-300 bg-white px-3 sm:px-4 py-2 text-sm transition-colors focus:outline-none focus:border-blue-500"
+              className="w-full rounded-lg border-2 border-gray-300 bg-white px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold transition-colors focus:outline-none focus:border-blue-500"
             >
-              <option value="ocupada">Ocupada</option>
-              <option value="arrendada">Arrendada</option>
+              <option value="ocupada" className="text-gray-900">Ocupada</option>
+              <option value="arrendada" className="text-gray-900">Arrendada</option>
             </select>
           </div>
 
@@ -118,7 +118,7 @@ export default function StatusModal({
                 if (errors.name) setErrors({ ...errors, name: undefined });
               }}
               placeholder="Ingresa el nombre completo"
-              className={`w-full rounded-lg border-2 px-3 sm:px-4 py-2 text-sm transition-colors focus:outline-none ${
+              className={`w-full rounded-lg border-2 px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold placeholder-gray-500 transition-colors focus:outline-none ${
                 errors.name
                   ? 'border-red-500 bg-red-50 focus:border-red-600'
                   : 'border-gray-300 bg-white focus:border-blue-500'
@@ -140,7 +140,7 @@ export default function StatusModal({
                 if (errors.phone) setErrors({ ...errors, phone: undefined });
               }}
               placeholder="Ingresa el teléfono"
-              className={`w-full rounded-lg border-2 px-3 sm:px-4 py-2 text-sm transition-colors focus:outline-none ${
+              className={`w-full rounded-lg border-2 px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold placeholder-gray-500 transition-colors focus:outline-none ${
                 errors.phone
                   ? 'border-red-500 bg-red-50 focus:border-red-600'
                   : 'border-gray-300 bg-white focus:border-blue-500'
@@ -157,11 +157,11 @@ export default function StatusModal({
             <select
               value={modifiedBy}
               onChange={(e) => setModifiedBy(e.target.value as ModifiedBy)}
-              className="w-full rounded-lg border-2 border-gray-300 bg-white px-3 sm:px-4 py-2 text-sm transition-colors focus:outline-none focus:border-blue-500"
+              className="w-full rounded-lg border-2 border-gray-300 bg-white px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold transition-colors focus:outline-none focus:border-blue-500"
             >
-              <option value="Fredy">Fredy</option>
-              <option value="Rocio">Rocio</option>
-              <option value="Administrador">Administrador</option>
+              <option value="Fredy" className="text-gray-900">Fredy</option>
+              <option value="Rocio" className="text-gray-900">Rocio</option>
+              <option value="Administrador" className="text-gray-900">Administrador</option>
             </select>
           </div>
         </div>
