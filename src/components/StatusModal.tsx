@@ -98,10 +98,14 @@ export default function StatusModal({
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value as RoomStatus)}
+              style={{
+                WebkitTextFillColor: '#111827',
+                color: '#111827',
+              } as React.CSSProperties}
               className="w-full rounded-lg border-2 border-gray-300 bg-white px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold transition-colors focus:outline-none focus:border-blue-500"
             >
-              <option value="ocupada" className="text-gray-900">Ocupada</option>
-              <option value="arrendada" className="text-gray-900">Arrendada</option>
+              <option value="ocupada" style={{ color: '#111827', backgroundColor: 'white' }}>Ocupada</option>
+              <option value="arrendada" style={{ color: '#111827', backgroundColor: 'white' }}>Arrendada</option>
             </select>
           </div>
 
@@ -119,10 +123,11 @@ export default function StatusModal({
               }}
               placeholder="Ingresa el nombre completo"
               style={{
-                WebkitTextFillColor: name ? '#111827' : undefined,
+                WebkitTextFillColor: '#111827',
                 WebkitAutofillTextFillColor: '#111827',
-              }}
-              className={`w-full rounded-lg border-2 px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold placeholder-gray-500 transition-colors focus:outline-none caret-gray-900 ${
+                color: '#111827',
+              } as React.CSSProperties}
+              className={`w-full rounded-lg border-2 px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold placeholder-gray-900 transition-colors focus:outline-none caret-gray-900 ${
                 errors.name
                   ? 'border-red-500 bg-red-50 focus:border-red-600'
                   : 'border-gray-300 bg-white focus:border-blue-500'
@@ -145,10 +150,11 @@ export default function StatusModal({
               }}
               placeholder="Ingresa el teléfono"
               style={{
-                WebkitTextFillColor: phone ? '#111827' : undefined,
+                WebkitTextFillColor: '#111827',
                 WebkitAutofillTextFillColor: '#111827',
-              }}
-              className={`w-full rounded-lg border-2 px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold placeholder-gray-500 transition-colors focus:outline-none caret-gray-900 ${
+                color: '#111827',
+              } as React.CSSProperties}
+              className={`w-full rounded-lg border-2 px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold placeholder-gray-900 transition-colors focus:outline-none caret-gray-900 ${
                 errors.phone
                   ? 'border-red-500 bg-red-50 focus:border-red-600'
                   : 'border-gray-300 bg-white focus:border-blue-500'
@@ -165,11 +171,15 @@ export default function StatusModal({
             <select
               value={modifiedBy}
               onChange={(e) => setModifiedBy(e.target.value as ModifiedBy)}
+              style={{
+                WebkitTextFillColor: '#111827',
+                color: '#111827',
+              } as React.CSSProperties}
               className="w-full rounded-lg border-2 border-gray-300 bg-white px-3 sm:px-4 py-2 text-sm text-gray-900 font-semibold transition-colors focus:outline-none focus:border-blue-500"
             >
-              <option value="Fredy" className="text-gray-900">Fredy</option>
-              <option value="Rocio" className="text-gray-900">Rocio</option>
-              <option value="Administrador" className="text-gray-900">Administrador</option>
+              <option value="Fredy" style={{ color: '#111827', backgroundColor: 'white' }}>Fredy</option>
+              <option value="Rocio" style={{ color: '#111827', backgroundColor: 'white' }}>Rocio</option>
+              <option value="Administrador" style={{ color: '#111827', backgroundColor: 'white' }}>Administrador</option>
             </select>
           </div>
         </div>

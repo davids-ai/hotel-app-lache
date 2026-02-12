@@ -36,8 +36,9 @@ select {
 
 input[type="text"]::placeholder,
 input[type="tel"]::placeholder {
-  -webkit-text-fill-color: #9ca3af !important;
-  color: #9ca3af !important;
+  -webkit-text-fill-color: #111827 !important;
+  color: #111827 !important;
+  opacity: 1 !important;
 }
 
 /* Autofill styles para iOS */
@@ -54,9 +55,11 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  -webkit-text-fill-color: #111827;
 }
 
 select option {
   background-color: white;
   color: #111827;
+  -webkit-text-fill-color: #111827;
 }
